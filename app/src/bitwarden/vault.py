@@ -45,3 +45,6 @@ class Vault:
     self.secure_notes = {obj.id: obj for obj in self.items.values() if obj.type == helpers.ItemType.SECURE_NOTE.value}
     self.cards =        {obj.id: obj for obj in self.items.values() if obj.type == helpers.ItemType.CARD.value}
     self.identities =   {obj.id: obj for obj in self.items.values() if obj.type == helpers.ItemType.IDENTITY.value}
+
+    for item in self.items.values():
+      item.folder = self.folders[item.folder_id]

@@ -14,6 +14,8 @@ class Item:
       self.favorite = None
       self.collection_ids = None
 
+      self.folder = None
+
 
     @staticmethod
     def from_obj(obj):

@@ -15,19 +15,20 @@ def main():
   print(f"- logins ({len(vault.logins)})")
   for i in vault.logins.values():
     if not i.name.startswith("at"): continue    # Debug filter !
-    print(f"  - [{i.name:40}] {i.uris[0].uri if i.uris else ''}")
+    # print(f"  - [{i.name:40}] {i.uris[0].uri if i.uris else ''}")
+    print(f"  - [{i.name:40}] {i.folder.name}")
 
   print(f"- secure_notes ({len(vault.secure_notes)})")
   for i in vault.secure_notes.values():
-    print(f"  - [{i.name:40}]")
+    print(f"  - [{i.name:40}] {i.folder.name}")
 
   print(f"- cards ({len(vault.cards)})")
   for i in vault.cards.values():
-    print(f"  - [{i.name:40}]")
+    print(f"  - [{i.name:40}] {i.folder.name}")
 
   print(f"- identities ({len(vault.identities)})")
   for i in vault.identities.values():
-    print(f"  - [{i.name:40}]")
+    print(f"  - [{i.name:40}] {i.folder.name}")
 
 
 if __name__ == "__main__":
