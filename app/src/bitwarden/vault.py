@@ -48,3 +48,4 @@ class Vault:
 
     for item in self.items.values():
       item.folder = self.folders[item.folder_id]
+      self.folders[item.folder_id].items.append(item)

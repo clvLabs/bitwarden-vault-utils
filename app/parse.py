@@ -30,6 +30,10 @@ def main():
   for i in vault.identities.values():
     print(f"  - [{i.name:40}] {i.folder.name}")
 
+  print(f"- folders ({len(vault.folders)})")
+  for f in vault.folders.values():
+    print(f"  - [{f.name:40}] ({len(f.items):3} items)")
+
 
 if __name__ == "__main__":
   start_time = time.time()
