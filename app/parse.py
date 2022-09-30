@@ -26,7 +26,12 @@ def main():
     print(f"- ---[{len(folder.items):3} {folder.name:20}] {'-'*50}")
     for item in folder.items:
       _classname = bitwarden.helpers.get_item_class_name(item.type)
-      print(f"- [{item.id}] [{folder.name:20}] [{_classname:10}] {item.name}")
+
+      extrainfo = ""
+      if type(item) is bitwarden.Login:
+        extrainfo = f"[{item.username:40}] "
+
+      print(f"- [{item.id}] [{folder.name:20}] [{_classname:10}] {extrainfo}{item.name}")
 
   print()
 
