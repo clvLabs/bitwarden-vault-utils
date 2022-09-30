@@ -1,4 +1,5 @@
 from .item import Item
+import src.bitwarden.helpers as helpers
 
 
 class SecureNote(Item):
@@ -26,5 +27,5 @@ class SecureNote(Item):
 
       new_obj = SecureNote()
       new_obj._parse_item_fields(obj)
-      if "type" in inner_obj:    new_obj.note_type = inner_obj["type"]
+      if "type" in inner_obj:    new_obj.note_type = helpers.nonull(inner_obj["type"])
       return new_obj

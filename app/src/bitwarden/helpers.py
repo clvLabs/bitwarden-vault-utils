@@ -42,3 +42,7 @@ def get_item_class_name(item_type):
     return "Identity"
   else:
     raise Exception(f"Item has a wrong 'type' field ({item_type})")
+
+
+def nonull(data):
+  return "" if data is None else data

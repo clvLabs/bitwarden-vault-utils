@@ -12,7 +12,7 @@ class Vault:
     # Original exported data
     self.encrypted = False
     self.folders = {
-      None: no_folder
+      '': no_folder
     }
     self.items = {}
 

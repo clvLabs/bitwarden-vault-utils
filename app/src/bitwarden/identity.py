@@ -1,4 +1,5 @@
 from .item import Item
+import src.bitwarden.helpers as helpers
 
 
 class Identity(Item):
@@ -42,22 +43,22 @@ class Identity(Item):
 
       new_obj = Identity()
       new_obj._parse_item_fields(obj)
-      if "title" in inner_obj:           new_obj.title = inner_obj["title"]
-      if "firstName" in inner_obj:       new_obj.first_name = inner_obj["firstName"]
-      if "middleName" in inner_obj:      new_obj.middle_name = inner_obj["middleName"]
-      if "lastName" in inner_obj:        new_obj.last_name = inner_obj["lastName"]
-      if "address1" in inner_obj:        new_obj.address1 = inner_obj["address1"]
-      if "address2" in inner_obj:        new_obj.address2 = inner_obj["address2"]
-      if "address3" in inner_obj:        new_obj.address3 = inner_obj["address3"]
-      if "city" in inner_obj:            new_obj.city = inner_obj["city"]
-      if "state" in inner_obj:           new_obj.state = inner_obj["state"]
-      if "postalCode" in inner_obj:      new_obj.postal_code = inner_obj["postalCode"]
-      if "country" in inner_obj:         new_obj.country = inner_obj["country"]
-      if "company" in inner_obj:         new_obj.company = inner_obj["company"]
-      if "email" in inner_obj:           new_obj.email = inner_obj["email"]
-      if "phone" in inner_obj:           new_obj.phone = inner_obj["phone"]
-      if "ssn" in inner_obj:             new_obj.ssn = inner_obj["ssn"]
-      if "username" in inner_obj:        new_obj.username = inner_obj["username"]
-      if "passportNumber" in inner_obj:  new_obj.passport_number = inner_obj["passportNumber"]
-      if "licenseNumber" in inner_obj:   new_obj.license_number = inner_obj["licenseNumber"]
+      if "title" in inner_obj:           new_obj.title = helpers.nonull(inner_obj["title"])
+      if "firstName" in inner_obj:       new_obj.first_name = helpers.nonull(inner_obj["firstName"])
+      if "middleName" in inner_obj:      new_obj.middle_name = helpers.nonull(inner_obj["middleName"])
+      if "lastName" in inner_obj:        new_obj.last_name = helpers.nonull(inner_obj["lastName"])
+      if "address1" in inner_obj:        new_obj.address1 = helpers.nonull(inner_obj["address1"])
+      if "address2" in inner_obj:        new_obj.address2 = helpers.nonull(inner_obj["address2"])
+      if "address3" in inner_obj:        new_obj.address3 = helpers.nonull(inner_obj["address3"])
+      if "city" in inner_obj:            new_obj.city = helpers.nonull(inner_obj["city"])
+      if "state" in inner_obj:           new_obj.state = helpers.nonull(inner_obj["state"])
+      if "postalCode" in inner_obj:      new_obj.postal_code = helpers.nonull(inner_obj["postalCode"])
+      if "country" in inner_obj:         new_obj.country = helpers.nonull(inner_obj["country"])
+      if "company" in inner_obj:         new_obj.company = helpers.nonull(inner_obj["company"])
+      if "email" in inner_obj:           new_obj.email = helpers.nonull(inner_obj["email"])
+      if "phone" in inner_obj:           new_obj.phone = helpers.nonull(inner_obj["phone"])
+      if "ssn" in inner_obj:             new_obj.ssn = helpers.nonull(inner_obj["ssn"])
+      if "username" in inner_obj:        new_obj.username = helpers.nonull(inner_obj["username"])
+      if "passportNumber" in inner_obj:  new_obj.passport_number = helpers.nonull(inner_obj["passportNumber"])
+      if "licenseNumber" in inner_obj:   new_obj.license_number = helpers.nonull(inner_obj["licenseNumber"])
       return new_obj

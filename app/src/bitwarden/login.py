@@ -1,4 +1,5 @@
 from .item import Item
+import src.bitwarden.helpers as helpers
 
 
 class URI:
@@ -11,8 +12,8 @@ class URI:
     @staticmethod
     def from_obj(obj):
       new_obj = URI()
-      if "match" in obj:  new_obj.match = obj["match"]
-      if "uri" in obj:    new_obj.uri = obj["uri"]
+      if "match" in obj:  new_obj.match = helpers.nonull(obj["match"])
+      if "uri" in obj:    new_obj.uri = helpers.nonull(obj["uri"])
       return new_obj
 
 
@@ -45,7 +46,7 @@ class Login(Item):
       new_obj = Login()
       new_obj._parse_item_fields(obj)
       if "uris" in inner_obj:      new_obj.uris = [URI.from_obj(_uri_obj) for _uri_obj in inner_obj["uris"]]
-      if "username" in inner_obj:  new_obj.username = inner_obj["username"]
-      if "password" in inner_obj:  new_obj.password = inner_obj["password"]
-      if "totp" in inner_obj:      new_obj.totp = inner_obj["totp"]
+      if "username" in inner_obj:  new_obj.username = helpers.nonull(inner_obj["username"])
+      if "password" in inner_obj:  new_obj.password = helpers.nonull(inner_obj["password"])
+      if "totp" in inner_obj:      new_obj.totp = helpers.nonull(inner_obj["totp"])
       return new_obj

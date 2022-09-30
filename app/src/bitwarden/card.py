@@ -1,4 +1,5 @@
 from .item import Item
+import src.bitwarden.helpers as helpers
 
 
 class Card(Item):
@@ -31,10 +32,10 @@ class Card(Item):
 
       new_obj = Card()
       new_obj._parse_item_fields(obj)
-      if "cardholderName" in inner_obj:  new_obj.holder_name = inner_obj["cardholderName"]
-      if "brand" in inner_obj:           new_obj.brand = inner_obj["brand"]
-      if "number" in inner_obj:          new_obj.number = inner_obj["number"]
-      if "expMonth" in inner_obj:        new_obj.exp_month = inner_obj["expMonth"]
-      if "expYear" in inner_obj:         new_obj.exp_year = inner_obj["expYear"]
-      if "code" in inner_obj:            new_obj.code = inner_obj["code"]
+      if "cardholderName" in inner_obj:  new_obj.holder_name = helpers.nonull(inner_obj["cardholderName"])
+      if "brand" in inner_obj:           new_obj.brand = helpers.nonull(inner_obj["brand"])
+      if "number" in inner_obj:          new_obj.number = helpers.nonull(inner_obj["number"])
+      if "expMonth" in inner_obj:        new_obj.exp_month = helpers.nonull(inner_obj["expMonth"])
+      if "expYear" in inner_obj:         new_obj.exp_year = helpers.nonull(inner_obj["expYear"])
+      if "code" in inner_obj:            new_obj.code = helpers.nonull(inner_obj["code"])
       return new_obj
