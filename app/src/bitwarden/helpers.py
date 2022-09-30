@@ -13,6 +13,9 @@ class ItemType(Enum):
 
 
 def get_item_class(item_type):
+  if type(item_type) is not ItemType:
+    item_type = ItemType(item_type)
+
   if item_type == ItemType.LOGIN:
     return login.Login
   elif item_type == ItemType.SECURE_NOTE:

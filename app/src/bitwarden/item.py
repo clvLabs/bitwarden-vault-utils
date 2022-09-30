@@ -22,8 +22,7 @@ class Item:
       if "type" not in obj:
         raise Exception("Item has no 'type' field")
 
-      _type = helpers.ItemType(obj["type"])
-      _class = helpers.get_item_class(_type)
+      _class = helpers.get_item_class(obj["type"])
 
       return _class.from_obj(obj)
 
