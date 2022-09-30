@@ -26,3 +26,19 @@ def get_item_class(item_type):
     return identity.Identity
   else:
     raise Exception(f"Item has a wrong 'type' field ({item_type})")
+
+
+def get_item_class_name(item_type):
+  if type(item_type) is not ItemType:
+    item_type = ItemType(item_type)
+
+  if item_type == ItemType.LOGIN:
+    return "Login"
+  elif item_type == ItemType.SECURE_NOTE:
+    return "SecureNote"
+  elif item_type == ItemType.CARD:
+    return "Card"
+  elif item_type == ItemType.IDENTITY:
+    return "Identity"
+  else:
+    raise Exception(f"Item has a wrong 'type' field ({item_type})")
