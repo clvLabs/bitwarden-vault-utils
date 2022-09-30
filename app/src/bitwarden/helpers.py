@@ -46,3 +46,7 @@ def get_item_class_name(item_type):
 
 def nonull(data):
   return "" if data is None else data
+
+
+def nullblank(data):
+  return None if data == "" else data

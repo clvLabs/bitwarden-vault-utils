@@ -23,6 +23,21 @@ class Card(Item):
       return self.__str__()
 
 
+    def to_obj(self):
+      obj = super().to_obj()
+      obj.update({
+        "card": {
+          "cardholderName": helpers.nullblank(self.holder_name),
+          "brand": helpers.nullblank(self.brand),
+          "number": helpers.nullblank(self.number),
+          "expMonth": helpers.nullblank(self.exp_month),
+          "expYear": helpers.nullblank(self.exp_year),
+          "code": helpers.nullblank(self.code),
+        }
+      })
+      return obj
+
+
     @staticmethod
     def from_obj(obj):
       if "card" not in obj:

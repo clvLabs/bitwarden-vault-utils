@@ -9,6 +9,21 @@ class URI:
       self.uri = None
 
 
+    def __str__(self):
+      return f"<bitwarden.URI uri=\"{self.uri}\">"
+
+
+    def __repr__(self):
+      return self.__str__()
+
+
+    def to_obj(self):
+      return {
+        "match": helpers.nullblank(self.match),
+        "uri": helpers.nullblank(self.uri),
+      }
+
+
     @staticmethod
     def from_obj(obj):
       new_obj = URI()
@@ -34,6 +49,19 @@ class Login(Item):
 
     def __repr__(self):
       return self.__str__()
+
+
+    def to_obj(self):
+      obj = super().to_obj()
+      obj.update({
+        "login": {
+          "uris": [uri.to_obj() for uri in self.uris],
+          "username": helpers.nullblank(self.username),
+          "password": helpers.nullblank(self.password),
+          "totp": helpers.nullblank(self.totp),
+        }
+      })
+      return obj
 
 
     @staticmethod

@@ -34,6 +34,33 @@ class Identity(Item):
       return self.__str__()
 
 
+    def to_obj(self):
+      obj = super().to_obj()
+      obj.update({
+        "identity": {
+          "title": helpers.nullblank(self.title),
+          "firstName": helpers.nullblank(self.first_name),
+          "middleName": helpers.nullblank(self.middle_name),
+          "lastName": helpers.nullblank(self.last_name),
+          "address1": helpers.nullblank(self.address1),
+          "address2": helpers.nullblank(self.address2),
+          "address3": helpers.nullblank(self.address3),
+          "city": helpers.nullblank(self.city),
+          "state": helpers.nullblank(self.state),
+          "postalCode": helpers.nullblank(self.postal_code),
+          "country": helpers.nullblank(self.country),
+          "company": helpers.nullblank(self.company),
+          "email": helpers.nullblank(self.email),
+          "phone": helpers.nullblank(self.phone),
+          "ssn": helpers.nullblank(self.ssn),
+          "username": helpers.nullblank(self.username),
+          "passportNumber": helpers.nullblank(self.passport_number),
+          "licenseNumber": helpers.nullblank(self.license_number),
+        }
+      })
+      return obj
+
+
     @staticmethod
     def from_obj(obj):
       if "identity" not in obj:

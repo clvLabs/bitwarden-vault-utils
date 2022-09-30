@@ -18,6 +18,20 @@ class Item:
       self.folder = None
 
 
+    def to_obj(self):
+      return {
+        "id": helpers.nullblank(self.id),
+        "organizationId": helpers.nullblank(self.organization_id),
+        "folderId": helpers.nullblank(self.folder_id),
+        "type": helpers.nullblank(self.type),
+        "reprompt": helpers.nullblank(self.reprompt),
+        "name": helpers.nullblank(self.name),
+        "notes": helpers.nullblank(self.notes),
+        "favorite": helpers.nullblank(self.favorite),
+        "collectionIds": helpers.nullblank(self.collection_ids),
+      }
+
+
     @staticmethod
     def from_obj(obj):
       if "type" not in obj:

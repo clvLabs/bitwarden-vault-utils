@@ -9,6 +9,13 @@ class Folder:
       self.items = []
 
 
+    def to_obj(self):
+      return {
+        "id": helpers.nullblank(self.id),
+        "name": helpers.nullblank(self.name),
+      }
+
+
     @staticmethod
     def from_obj(obj):
       new_obj = Folder()

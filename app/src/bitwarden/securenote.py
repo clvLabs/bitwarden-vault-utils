@@ -18,6 +18,16 @@ class SecureNote(Item):
       return self.__str__()
 
 
+    def to_obj(self):
+      obj = super().to_obj()
+      obj.update({
+        "secureNote": {
+          "type": helpers.nullblank(self.note_type),
+        }
+      })
+      return obj
+
+
     @staticmethod
     def from_obj(obj):
       if "secureNote" not in obj:
