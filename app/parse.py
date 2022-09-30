@@ -9,30 +9,24 @@ def main():
   vault = bitwarden.Vault()
   print("Loading vault")
   vault.load(SAMPLE_FILE)
+  print()
 
-  print("Vault loaded:")
+  print(f"Found {len(vault.items)} items:")
+  print(f"- {len(vault.logins):3} logins")
+  print(f"- {len(vault.secure_notes):3} secure_notes")
+  print(f"- {len(vault.cards):3} cards")
+  print(f"- {len(vault.identities):3} identities")
+  print()
 
-  print(f"- logins ({len(vault.logins)})")
-  for i in vault.logins.values():
-    if not i.name.startswith("at"): continue    # Debug filter !
-    # print(f"  - [{i.name:40}] {i.uris[0].uri if i.uris else ''}")
-    print(f"  - [{i.name:40}] {i.folder.name}")
+  print(f"Found {len(vault.folders)} folders:")
+  for folder in vault.folders.values():
+    print()
+    print(f"- ---[{folder.name:20}: {len(folder.items):3}] {'-'*50}")
+    for item in folder.items:
+      _classname = bitwarden.helpers.get_item_class_name(item.type)
+      print(f"  - [{_classname:10}] {item.name:20}")
 
-  print(f"- secure_notes ({len(vault.secure_notes)})")
-  for i in vault.secure_notes.values():
-    print(f"  - [{i.name:40}] {i.folder.name}")
-
-  print(f"- cards ({len(vault.cards)})")
-  for i in vault.cards.values():
-    print(f"  - [{i.name:40}] {i.folder.name}")
-
-  print(f"- identities ({len(vault.identities)})")
-  for i in vault.identities.values():
-    print(f"  - [{i.name:40}] {i.folder.name}")
-
-  print(f"- folders ({len(vault.folders)})")
-  for f in vault.folders.values():
-    print(f"  - [{f.name:40}] ({len(f.items):3} items)")
+  print()
 
 
 if __name__ == "__main__":
