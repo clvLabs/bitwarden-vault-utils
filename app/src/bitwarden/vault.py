@@ -6,9 +6,14 @@ import src.bitwarden.helpers as helpers
 class Vault:
 
   def __init__(self):
+    no_folder = Folder()
+    no_folder.name = "(no folder)"
+
     # Original exported data
     self.encrypted = False
-    self.folders = {}
+    self.folders = {
+      None: no_folder
+    }
     self.items = {}
 
     # Processed data
