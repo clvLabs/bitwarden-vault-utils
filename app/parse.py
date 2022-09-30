@@ -1,13 +1,16 @@
 #!/usr/bin/python3
+import argparse
 import src.bitwarden as bitwarden
-
-SAMPLE_FILE = "local/p.json"
 
 
 def main():
+  parser = argparse.ArgumentParser()
+  parser.add_argument('file', type=str, help='File to parse')
+  args = parser.parse_args()
+
   vault = bitwarden.Vault()
   print("Loading vault")
-  vault.load(SAMPLE_FILE)
+  vault.load(args.file)
   print()
 
   print(f"Found {len(vault.items)} items:")
