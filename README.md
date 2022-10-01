@@ -78,3 +78,25 @@ Found 160 items:
 Cleaning secrets
 Saving clean vault
 ```
+
+## Development
+
+### Creating temporary scripts without altering the repo
+From the project folder:
+* Create a folder for local scripts:
+  ```
+  $ mkdir -p local/scripts/src
+  ```
+* Symlink the `app/src` folder into your local scripts folder:
+  ```
+  $ ln -s $(pwd)/app/src $(pwd)/local/scripts/src
+  ```
+* Copy a sample script into your local scripts folder:
+  ```
+  $ cp app/parse.py local/scripts/sample.py
+  ```
+* Edit the new local script and modify as needed.
+* Run from the project folder:
+  ```
+  $ local/scripts/sample.py
+  ```
