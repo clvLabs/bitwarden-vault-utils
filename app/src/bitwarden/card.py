@@ -15,6 +15,14 @@ class Card(Item):
       self.code = None
 
 
+    def clean_secrets(self):
+      super().clean_secrets()
+      self.number = None
+      self.exp_month = None
+      self.exp_year = None
+      self.code = None
+
+
     def __str__(self):
       return f"<bitwarden.Card name=\"{self.name}\">"
 

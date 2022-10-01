@@ -26,6 +26,24 @@ class Identity(Item):
       self.license_number = None
 
 
+    def clean_secrets(self):
+      super().clean_secrets()
+      self.address1 = None
+      self.address2 = None
+      self.address3 = None
+      self.city = None
+      self.state = None
+      self.postal_code = None
+      self.country = None
+      self.company = None
+      self.email = None
+      self.phone = None
+      self.ssn = None
+      self.username = None
+      self.passport_number = None
+      self.license_number = None
+
+
     def __str__(self):
       return f"<bitwarden.Identity name=\"{self.name}\">"
 

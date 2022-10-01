@@ -23,11 +23,22 @@ class Vault:
     self.identities = {}
 
 
+  def clean_secrets(self):
+    for item in self.items.values():
+      item.clean_secrets()
+
+
   def load(self, filename):
     with open(filename) as f:
       data = json.load(f)
       self._parse(data)
       self._update()
+
+
+  def save(self, filename):
+    obj = self._build_obj()
+    with open(filename, "w") as f:
+      json.dump(obj, f, indent=2)
 
 
   def _parse(self, data):
@@ -43,6 +54,14 @@ class Vault:
       for item_obj in data["items"]:
         item = Item.from_obj(item_obj)
         self.items[item.id] = item
+
+
+  def _build_obj(self):
+    return {
+      "encrypted": self.encrypted,
+      "folders": [folder.to_obj() for folder in self.folders.values() if folder.id],
+      "items": [item.to_obj() for item in self.items.values()],
+    }
 
 
   def _update(self):

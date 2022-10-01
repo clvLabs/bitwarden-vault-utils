@@ -43,6 +43,12 @@ class Login(Item):
       self.totp = None
 
 
+    def clean_secrets(self):
+      super().clean_secrets()
+      self.password = None
+      self.totp = None
+
+
     def __str__(self):
       return f"<bitwarden.Login name=\"{self.name}\">"
 

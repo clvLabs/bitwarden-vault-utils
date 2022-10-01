@@ -10,6 +10,10 @@ class SecureNote(Item):
       self.note_type = None
 
 
+    def clean_secrets(self):
+      super().clean_secrets()
+
+
     def __str__(self):
       return f"<bitwarden.SecureNote name=\"{self.name}\">"
 

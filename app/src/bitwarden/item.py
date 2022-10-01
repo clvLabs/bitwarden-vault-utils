@@ -18,6 +18,10 @@ class Item:
       self.folder = None
 
 
+    def clean_secrets(self):
+      self.notes = None
+
+
     def to_obj(self):
       return {
         "id": helpers.nullblank(self.id),
