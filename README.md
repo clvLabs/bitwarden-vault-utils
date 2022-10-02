@@ -77,6 +77,35 @@ OOOOPS !!! 1 pwned passwords:
 - [Sample web login                        ] [1234abcd]
 ```
 
+## Checking for reused passwords
+```
+$ python3 app/check-reused-passwords.py -h
+usage: check-reused-passwords.py [-h] file
+
+positional arguments:
+  file        File to parse
+
+optional arguments:
+  -h, --help  show this help message and exit
+```
+
+Sample:
+```
+$ python3 app/check-reused-passwords.py local/vault.json
+Loading vault
+
+Found 155 logins.
+
+OOOOPS !!! 2 reused passwords:
+- [7o@9un2]
+    - [test.server01.net                       ]
+    - [test.server07.net                       ]
+- [50gqO]
+    - [test.server06.net                       ]
+    - [test.server12.net                       ]
+    - [test.server22.net                       ]
+```
+
 ## Cleaning vault secrets
 If you want to keep a vault file in your computer but don't need to keep the secret data in it, you can clean a vault's secrets with this script. It allows saving the _clean_ version in a different file if needed.
 
