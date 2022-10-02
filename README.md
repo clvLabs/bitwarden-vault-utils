@@ -6,9 +6,7 @@ Utilities to manage [bitwarden](https://bitwarden.com/) `json` vault data.
 * Create a `local` folder in the project folder.
 * Copy a `JSON` export file in the `local` folder (e.g. `vault.json`)
 
-## Usage
-
-### Reviewing vault info
+## Reviewing vault info
 ```
 $ python3 app/parse.py -h
 usage: parse.py [-h] file
@@ -17,7 +15,7 @@ positional arguments:
   file        File to parse
 
 optional arguments:
-  -h, --help  show this help message and exi
+  -h, --help  show this help message and exit
 ```
 
 Sample:
@@ -37,21 +35,51 @@ Found 14 folders:
 - [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx] [(no folder)         ] [SecureNote] test-secure-note
 
 - ---[ 10 Business            ] --------------------------------------------------
-- [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx] [Business            ] [Login     ] openexchangerates.org
+- [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx] [Business            ] [Login     ] [someone@gmail.com                       ] openexchangerates.org
 ...
 
 - ---[ 18 Develop             ] --------------------------------------------------
-- [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx] [Develop             ] [Login     ] developer.adobe.com
-- [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx] [Develop             ] [Login     ] docker.com
-- [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx] [Develop             ] [Login     ] github.com
+- [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx] [Develop             ] [Login     ] [someone@gmail.com                       ] developer.adobe.com
+- [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx] [Develop             ] [Login     ] [someone@gmail.com                       ] docker.com
+- [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx] [Develop             ] [Login     ] [someone@gmail.com                       ] github.com
 ...
 
 - ---[  6 Email               ] --------------------------------------------------
-- [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx] [Email               ] [Login     ] GMail
+- [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx] [Email               ] [Login     ] [someone@gmail.com                       ] GMail
 ...
 ```
 
-### Cleaning vault secrets
+## Checking for pwned passwords
+This is done using [haveibeenpwned](https://haveibeenpwned.com/)'s API.
+
+This **does NOT** send any of your passwords anywhere. Check code/API docs to make sure if you wish.
+
+
+```
+$ python3 app/check-pwned-passwords.py -h
+usage: check-pwned-passwords.py [-h] file
+
+positional arguments:
+  file        File to parse
+
+optional arguments:
+  -h, --help  show this help message and exit
+```
+
+Sample:
+```
+$ python3 app/check-pwned-passwords.py local/vault.json
+Loading vault
+
+Found 155 logins.
+
+OOOOPS !!! 1 pwned passwords:
+- [Sample web login                        ] [1234abcd]
+```
+
+## Cleaning vault secrets
+If you want to keep a vault file in your computer but don't need to keep the secret data in it, you can clean a vault's secrets with this script. It allows saving the _clean_ version in a different file if needed.
+
 ```
 $ python3 app/clean-secrets.py -h
 usage: clean-secrets.py [-h] infile outfile
@@ -81,7 +109,7 @@ Saving clean vault
 
 ## Development
 
-### Creating temporary scripts without altering the repo
+### Creating temporary/personal scripts without altering the repo
 From the project folder:
 * Create a folder for local scripts:
   ```
@@ -98,5 +126,5 @@ From the project folder:
 * Edit the new local script and modify as needed.
 * Run from the project folder:
   ```
-  $ local/scripts/sample.py
+  $ python3 local/scripts/sample.py
   ```
