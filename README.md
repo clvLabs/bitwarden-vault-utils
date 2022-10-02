@@ -1,6 +1,6 @@
-# bitwarden-vault-parse
+# bitwarden-vault-utils
 
-Parse exported [bitwarden](https://bitwarden.com/) `json` vault data.
+Utilities to manage [bitwarden](https://bitwarden.com/) `json` vault data.
 
 ## Setup
 * Create a `local` folder in the project folder.
